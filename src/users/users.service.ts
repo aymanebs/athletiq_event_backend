@@ -6,7 +6,7 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import * as bcrypt from 'bcryptjs';
 
 @Injectable()
-export class UsersService {
+export class UserService {
 
     constructor(@InjectModel(User.name) private readonly userModel: Model<User>){}
 
