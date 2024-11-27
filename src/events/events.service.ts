@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { UpdateEventDto } from './dtos/update-event.dto';
 import { CreateEventDto } from './dtos/create-event.dto';
 import { Event } from './event.schema';
+import { Participant } from 'src/participants/participant.schema';
 
 
 @Injectable()
@@ -18,7 +19,6 @@ export class EventService {
 
     async update(id: string,updateEventDto: UpdateEventDto): Promise<Event>{
         const event = await this.eventModel.findByIdAndUpdate(id, updateEventDto, {new: true}).exec();
-        console.log('event: ',event);
         return event;
     }
 
@@ -31,7 +31,7 @@ export class EventService {
     }
 
     async getEventById(id: string): Promise<Event>{
-        const event = this.eventModel.findById(id).exec();
+        const event = this.eventModel.findById(id).populate('participants').exec();
         if(!event){
             throw new NotFoundException('Event not found');
         }
@@ -42,4 +42,14 @@ export class EventService {
         const event = this.eventModel.findByIdAndDelete(id).exec();
         return event;
     }
+
+    async addParticipant(eventId, participantId): Promise<void>{
+        await this.eventModel.findByIdAndUpdate(eventId,{$push: {participants: participantId}},{new: true});
+    }
+
+    async removeParticipant(eventId, participantId): Promise<void>{
+        participantId =new Types.ObjectId(participantId);
+        await  this.eventModel.findByIdAndUpdate(eventId,{$pull: {participants: participantId}},{new: true});
+    }
+
 }
