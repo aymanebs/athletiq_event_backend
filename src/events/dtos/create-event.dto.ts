@@ -23,7 +23,6 @@ export class CreateEventDto{
     @IsEnum(EventType)
     type: EventType;
 
-    @IsNumber()
     @Min(1)
     capacity: number;
 

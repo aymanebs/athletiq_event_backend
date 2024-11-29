@@ -31,7 +31,11 @@ export class EventService {
     }
 
     async getEventById(id: string): Promise<Event>{
-        const event = this.eventModel.findById(id).populate('participants').exec();
+        console.log(Participant.name);
+        const eventBefore = await this.eventModel.findById(id);
+        console.log('Event before populate:', eventBefore);
+        const event = await this.eventModel.findById(id).populate({path: 'participants', select: 'fullname email phone',model: Participant.name }).exec();
+        console.log('Event after populate:',event);
         if(!event){
             throw new NotFoundException('Event not found');
         }
