@@ -4,7 +4,7 @@ import { Model, Types } from 'mongoose';
 import { CreateEventDto } from './dtos/create-event.dto';
 import { UpdateEventDto } from './dtos/update-event.dto';
 import { Event } from './event.schema';
-import { Participant } from 'src/participants/participant.schema';
+import { Participant } from '../participants/participant.schema';
 
 @Injectable()
 export class EventService {

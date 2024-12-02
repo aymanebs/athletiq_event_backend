@@ -1,7 +1,7 @@
 import { Type } from "class-transformer";
-import { IsDate, IsEnum, IsNumber, IsOptional, IsString, MaxLength, Min, MinLength, Validate } from "class-validator";
-import { EventType } from "src/utils/type";
-import { IsFutureDate } from "src/validators/is-future-date.validator";
+import { IsDate, IsEnum, IsOptional, IsString, MaxLength, MinLength, Validate } from "class-validator";
+import { EventType } from "../../utils/type";
+import { IsFutureDate } from "../../validators/is-future-date.validator";
 
 
 export class CreateEventDto{

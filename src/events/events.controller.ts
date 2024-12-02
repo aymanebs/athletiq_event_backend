@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { EventService } from './events.service';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guards';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guards';
 import { CreateEventDto } from './dtos/create-event.dto';
 import { UpdateEventDto } from './dtos/update-event.dto';
 import { Event } from './event.schema';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { multerConfig } from 'src/config/multer.config';
-import { FileValidationPipe } from 'src/pipes/file-validation.pipe';
+import { multerConfig } from '../config/multer.config';
+import { FileValidationPipe } from '../pipes/file-validation.pipe';
 
 @UseGuards(JwtAuthGuard)
 @Controller('events')

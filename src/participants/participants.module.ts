@@ -4,7 +4,7 @@ import { Participant, ParticipantSchema } from './participant.schema';
 import { EventsModule } from 'src/events/events.module';
 import { ParticipantsService } from './participants.service';
 import { ParticipantsController } from './participants.controller';
-import { EventService } from 'src/events/events.service';
+
 
 
 @Module({

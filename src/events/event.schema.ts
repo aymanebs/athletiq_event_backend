@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
-import { EventType } from "src/utils/type";
+import { EventType } from "../utils/type";
 
 @Schema({
     collection: 'events',
