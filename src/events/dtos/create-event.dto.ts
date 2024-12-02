@@ -16,14 +16,11 @@ export class CreateEventDto{
     @MinLength(5)
     description?: string;
 
-    @IsOptional()
-    @IsString()
     image?: string;
 
     @IsEnum(EventType)
     type: EventType;
 
-    @Min(1)
     capacity: number;
 
     @IsString()
