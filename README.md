@@ -1,4 +1,4 @@
-# Athletiq Event Back
+# Athletiq Event Backend
 
 ![Jira](https://img.shields.io/badge/Jira-Project%20Link-blue?logo=jira&style=flat-square)  
 
@@ -6,16 +6,18 @@
 
 This project is the backend service for managing events and related operations in the Athletiq platform. It is built using **NestJS** and integrates with **MongoDB**.
 
----
-
 ## 🚀 Features
 
-- Event management (Create, Update, Delete)
-- Image upload functionality
-- MongoDB integration
-- Fully containerized for deployment
+- **Events Management**:
+  - **POST /events**: Create a new event.
+  - **GET /events**: Retrieve all events.
+  - **PUT /events/:id**: Update an event.
+  - **DELETE /events/:id**: Delete an event.
 
----
+- **Authentication**:
+  - **POST /auth/signup**: Sign up a new user.
+  - **POST /auth/login**: Log in a user.
+
 
 ## 🛠️ Prerequisites
 
@@ -25,69 +27,54 @@ Ensure you have the following installed on your system:
 - [Docker](https://www.docker.com/) (optional, for containerized deployment)
 - [MongoDB](https://www.mongodb.com/) (if running without Docker)
 
----
+
+### Technologies
+
+- **NestJS**: A framework for building efficient, scalable Node.js server-side applications.
+- **TypeScript**: A superset of JavaScript that adds static types to improve development experience.
+- **MongoDB**: A NoSQL database used for storing event and user data.
+- **Mongoose**: An ODM (Object Data Modeling) library for MongoDB and Node.js.
+- **JWT (JSON Web Tokens)**: Used for secure user authentication and authorization.
+- **Docker**: Platform for developing, shipping, and running applications inside containers.
+
 
 ## 🏗️ Project Setup
 
 ### 1️⃣ Clone the Repository
 
-```bash
-git clone https://github.com/your-repo/athletiq-event-back.git
-cd athletiq-event-back
+```sh
+git clone https://github.com/your-repo/athletiq_event_backend.git
+cd athletiq_event_backend
+```
 
-Install dependencies:
+### 2️⃣ Install Dependencies
 
-bash
-Copier le code
+```sh
 npm install
-Set up your environment variables in a .env file:
+```
 
-env
-Copier le code
-PORT=3000
-DATABASE_URL=mongodb://<username>:<password>@localhost:27017/athletiq_events
-JWT_SECRET=your-secret-key
-Run the application:
+### 3️⃣ Set Up Environment Variables
 
-bash
-Copier le code
+Create a `.env` file in the root directory and add the following variables:
+
+```env
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_jwt_secret
+```
+
+### 4️⃣ Run the Application
+
+```sh
 npm run start:dev
-Usage
-Once the application is running, access the following routes:
+```
 
-Events:
+## 🗂️ Architecture
 
-POST /events: Create a new event.
-GET /events: Retrieve all events.
-PUT /events/:id: Update an event.
-DELETE /events/:id: Delete an event.
-Authentication:
+The project follows a modular architecture using NestJS. Below is a high-level overview of the main modules and their responsibilities:
 
-POST /auth/signup: Sign up a new user.
-POST /auth/login: Log in a user.
-Environment Variables
-The application requires the following environment variables:
+- **App Module**: The root module of the application.
+- **Events Module**: Handles all operations related to event management.
+- **Auth Module**: Manages user authentication and authorization.
+- **Users Module**: Manages user data and operations.
+- **Database Module**: Configures and provides database connections using Mongoose.
 
-Key	Description	Example
-PORT	Port for the application	3000
-DATABASE_URL	MongoDB connection string	mongodb://localhost:27017/db_name
-JWT_SECRET	Secret key for JWT generation	your-secret-key
-Docker Instructions
-To build and run the application in Docker:
-
-Build the Docker image:
-
-bash
-Copier le code
-docker build -t athletiq-event-back .
-Run the container:
-
-bash
-Copier le code
-docker run -d -p 3000:3000 --env-file .env athletiq-event-back
-
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-vbnet
-Copier le code
